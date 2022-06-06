@@ -37,9 +37,17 @@
             config.home-manager.users.domi.xsession.windowManager.i3.config.modifier;
         in
           lib.mkOptionDefault {
+            #programs
             "${modifier}+Shift+d" = "exec discord";
+            "${modifier}+Shift+t" = "exec telegram-desktop";
             "${modifier}+Shift+f" = "exec firefox";
-            "${modifier}+Shift+t" = "exec pcmanfm";
+            "${modifier}+t" = "exec pcmanfm";
+
+            #lock
+            "${modifier}+Shift+z" = "exec i3lock -c 000000";
+
+            #suspend
+            "${modifier}+Shift+u" = "exec i3lock -c 000000 && systemctl suspend";
 
             # Rofi
             "${modifier}+d" = ''
