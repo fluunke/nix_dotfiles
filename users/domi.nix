@@ -1,25 +1,26 @@
 {
-  config,
   pkgs,
+  config,
   lib,
   ...
 }: {
   imports = [
-    ./home-manager.nix
+    ../home-manager.nix
   ];
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  users.users.domi = {
+    # required for build-vm
+    initialPassword = "changeme";
+
+    isNormalUser = true;
+    description = "Domi";
+    extraGroups = ["networkmanager" "wheel"];
   };
 
   # email/calendar client
   programs.evolution = {
     enable = true;
   };
-
-  programs.dconf.enable = true;
 
   home-manager.useUserPackages = true;
   home-manager.useGlobalPkgs = true;
@@ -38,6 +39,7 @@
           lib.mkOptionDefault {
             "${modifier}+Shift+d" = "exec discord";
             "${modifier}+Shift+f" = "exec firefox";
+            "${modifier}+Shift+t" = "exec pcmanfm";
 
             # Rofi
             "${modifier}+d" = ''
@@ -52,31 +54,12 @@
 
         window.border = 0;
 
-        startup = [];
-      };
-    };
-
-    services.random-background = {
-      enable = true;
-      imageDirectory = "%h/.backgrounds";
-      interval = "1m";
-    };
-
-    gtk = {
-      enable = true;
-      theme = {
-        name = "Pop-dark";
-        package = pkgs.pop-gtk-theme;
-      };
-
-      iconTheme = {
-        name = "Pop";
-        package = pkgs.pop-icon-theme;
-      };
-
-      cursorTheme = {
-        name = "capitaine-cursors-white";
-        package = pkgs.capitaine-cursors;
+        startup = with pkgs; [
+          {
+            command = "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1";
+            notification = false;
+          }
+        ];
       };
     };
 
@@ -90,29 +73,9 @@
       i3status.enable = true;
       rofi.enable = true;
 
-      vscode = {
-        enable = true;
-        extensions = with pkgs.vscode-extensions; [
-          matklad.rust-analyzer
-          yzhang.markdown-all-in-one
-        ];
-      };
-
       alacritty = {
         enable = true;
       };
-
-      git = {
-        enable = true;
-        delta.enable = true;
-        userEmail = "flrk@tuta.io";
-        userName = "fluunke";
-        extraConfig = {
-          init.defaultBranch = "main";
-        };
-      };
-
-      gitui.enable = true;
 
       mpv.enable = true;
 
@@ -132,50 +95,34 @@
         };
       };
     };
+    gtk = {
+      enable = true;
+
+      font.name = "Fira Sans";
+
+      theme = {
+        name = "Pop-dark";
+        package = pkgs.pop-gtk-theme;
+      };
+
+      iconTheme = {
+        name = "Pop";
+        package = pkgs.pop-icon-theme;
+      };
+
+      cursorTheme = {
+        name = "capitaine-cursors-white";
+        package = pkgs.capitaine-cursors;
+      };
+    };
   };
 
   environment.systemPackages = with pkgs; [
-    # tools
-    wget
-    lxappearance
-    killall
-    unrar
-    unzip
-    zip
-    yt-dlp-light
-    p7zip
-    fd
-    kalker
-    pcmanfm
-
-    # screenshots
-    hacksaw
-    shotgun
-    xclip
-
-    # chats
-    tdesktop
-    discord
-
-    # programming
-    rustc
-    cargo
-    gcc
-
-    # media
-    pavucontrol
-    evince
-    spotify
-    viewnior
     blender
     ffmpeg
 
     # nix file formatter
     # using with its vscode extension
     alejandra
-
-    # polkit stuff
-    polkit
-    mate.mate-polkit
   ];
 }

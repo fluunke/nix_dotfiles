@@ -5,5 +5,7 @@
     noto-fonts-emoji
     liberation_ttf
     jetbrains-mono
+    fira
+    fira-code
   ];
 }
