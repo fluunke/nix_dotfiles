@@ -19,6 +19,8 @@
     enable = true;
   };
 
+  programs.dconf.enable = true;
+
   home-manager.useUserPackages = true;
   home-manager.useGlobalPkgs = true;
 
@@ -60,10 +62,31 @@
       interval = "1m";
     };
 
+    gtk = {
+      enable = true;
+      theme = {
+        name = "Pop-dark";
+        package = pkgs.pop-gtk-theme;
+      };
+
+      iconTheme = {
+        name = "Pop";
+        package = pkgs.pop-icon-theme;
+      };
+
+      cursorTheme = {
+        name = "capitaine-cursors-white";
+        package = pkgs.capitaine-cursors;
+      };
+    };
+
     programs = {
       bash = {
         enable = true;
       };
+
+      obs-studio.enable = true;
+
       i3status.enable = true;
       rofi.enable = true;
 
@@ -92,6 +115,13 @@
       gitui.enable = true;
 
       mpv.enable = true;
+
+      htop.enable = true;
+
+      exa = {
+        enable = true;
+        enableAliases = true;
+      };
 
       firefox = {
         enable = true;
@@ -139,7 +169,6 @@
     viewnior
     blender
     ffmpeg
-    gnome.gnome-maps
 
     # nix file formatter
     # using with its vscode extension
