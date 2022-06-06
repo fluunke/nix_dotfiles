@@ -9,6 +9,7 @@
     p7zip
     fd
     kalker
+    jq
 
     # polkit stuff
     polkit
