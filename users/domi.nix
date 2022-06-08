@@ -34,6 +34,12 @@
       config = {
         modifier = "Mod4";
 
+        floating.criteria = [
+          {
+            class = "Evolution";
+          }
+        ];
+
         keybindings = let
           modifier =
             config.home-manager.users.domi.xsession.windowManager.i3.config.modifier;
