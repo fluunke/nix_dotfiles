@@ -17,6 +17,10 @@
   ];
   boot = {
     supportedFilesystems = ["ntfs"];
+
+    # fix keychron F keys
+    extraModprobeConfig = "options hid_apple fnmode=0\n";
+
     initrd.secrets = {
       "/crypto_keyfile.bin" = null;
     };
