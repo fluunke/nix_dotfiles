@@ -14,13 +14,15 @@
 
     isNormalUser = true;
     description = "Domi";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "scanner"];
   };
 
   # email/calendar client
   programs.evolution = {
     enable = true;
   };
+
+  programs.file-roller.enable = true;
 
   home-manager.useUserPackages = true;
   home-manager.useGlobalPkgs = true;
@@ -99,10 +101,99 @@
         profiles = {
           domi = {
             isDefault = true;
+            settings = {
+              "app.normandy.enabled" = false;
+              "app.shield.optoutstudies.enabled" = false;
+              "app.update.auto" = false;
+              "beacon.enabled" = false;
+              "browser.aboutConfig.showWarning" = false;
+              "browser.cache.offline.enable" = false;
+              "browser.crashReports.unsubmittedCheck.autoSubmit" = false;
+              "browser.crashReports.unsubmittedCheck.autoSubmit2" = false;
+              "browser.crashReports.unsubmittedCheck.enabled" = false;
+              "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
+              "browser.newtabpage.enhanced" = false;
+              "browser.safebrowsing.blockedURIs.enabled" = false;
+              "browser.safebrowsing.downloads.enabled" = false;
+              "browser.safebrowsing.downloads.remote.enabled" = false;
+              "browser.safebrowsing.enabled" = false;
+              "browser.safebrowsing.malware.enabled" = false;
+              "browser.safebrowsing.phishing.enabled" = false;
+              "browser.send_pings" = false;
+              "browser.shell.checkDefaultBrowser" = false;
+              "browser.tabs.crashReporting.sendReport" = false;
+              "browser.urlbar.groupLabels.enabled" = false;
+              "browser.urlbar.quicksuggest.enabled" = false;
+              "browser.urlbar.trimURLs" = false;
+              "datareporting.healthreport.service.enabled" = false;
+              "datareporting.healthreport.uploadEnabled" = false;
+              "datareporting.policy.dataSubmissionEnabled" = false;
+              "dom.battery.enabled" = false;
+              "dom.event.clipboardevents.enabled" = false;
+              "experiments.activeExperiment" = false;
+              "experiments.enabled" = false;
+              "experiments.supported" = false;
+              "extensions.getAddons.cache.enabled" = false;
+              "extensions.getAddons.showPane" = false;
+              "extensions.greasemonkey.stats.optedin" = false;
+              "extensions.pocket.enabled" = false;
+              "extensions.shield-recipe-client.enabled" = false;
+              "media.navigator.enabled" = false;
+              "media.video_stats.enabled" = false;
+              "network.allow-experiments" = false;
+              "services.sync.prefs.sync.browser.newtabpage.activity-stream.showSponsoredTopSite" = false;
+              "toolkit.telemetry.archive.enabled" = false;
+              "toolkit.telemetry.bhrPing.enabled" = false;
+              "toolkit.telemetry.enabled" = false;
+              "toolkit.telemetry.firstShutdownPing.enabled" = false;
+              "toolkit.telemetry.hybridContent.enabled" = false;
+              "toolkit.telemetry.newProfilePing.enabled" = false;
+              "toolkit.telemetry.reportingpolicy.firstRun" = false;
+              "toolkit.telemetry.shutdownPingSender.enabled" = false;
+              "toolkit.telemetry.unified" = false;
+              "toolkit.telemetry.unifiedIsOptIn" = false;
+              "toolkit.telemetry.updatePing.enabled" = false;
+              "webgl.vendor-string-override" = " ";
+              "webgl.renderer-string-override" = " ";
+              "app.normandy.api_url" = "";
+              "breakpad.reportURL" = "";
+              "browser.disableResetPrompt" = true;
+              "browser.newtabpage.introShown" = true;
+              "browser.safebrowsing.appRepURL" = "";
+              "browser.safebrowsing.downloads.remote.url" = "";
+              "browser.selfsupport.url" = "";
+              "browser.sessionstore.privacy_level" = 2;
+              "browser.startup.homepage_override.mstone" = "ignore";
+              "experiments.manifest.uri" = "";
+              "extensions.CanvasBlocker@kkapsner.de.whiteList" = "";
+              "extensions.ClearURLs@kevinr.whiteList" = "";
+              "extensions.Decentraleyes@ThomasRientjes.whiteList" = "";
+              "extensions.greasemonkey.stats.url" = "";
+              "extensions.shield-recipe-client.api_url" = "";
+              "extensions.webservice.discoverURL" = "";
+              "media.autoplay.default" = 0;
+              "media.autoplay.enabled" = true;
+              "network.cookie.cookieBehavior" = 1;
+              "network.http.referer.spoofSource" = true;
+              "network.trr.mode" = 5;
+              "privacy.donottrackheader.enabled" = true;
+              "privacy.donottrackheader.value" = 1;
+              "privacy.trackingprotection.cryptomining.enabled" = true;
+              "privacy.trackingprotection.enabled" = true;
+              "privacy.trackingprotection.fingerprinting.enabled" = true;
+              "privacy.trackingprotection.pbmode.enabled" = true;
+              "privacy.usercontext.about_newtab_segregation.enabled" = true;
+              "security.ssl.disable_session_identifiers" = true;
+              "toolkit.telemetry.cachedClientID" = "";
+              "toolkit.telemetry.prompted" = 2;
+              "toolkit.telemetry.rejected" = true;
+              "toolkit.telemetry.server" = "";
+            };
           };
         };
       };
     };
+
     gtk = {
       enable = true;
 
@@ -128,6 +219,7 @@
   environment.systemPackages = with pkgs; [
     blender
     ffmpeg
+    imagemagick
 
     # nix file formatter
     # using with its vscode extension
