@@ -12,6 +12,7 @@
     ../pkgs/random-background.nix
     ../pkgs/sound.nix
     ../pkgs/steam.nix
+    ../pkgs/syncthing.nix
     ../users/domi.nix
     ../fonts.nix
   ];
