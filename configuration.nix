@@ -12,6 +12,8 @@
   nixpkgs.config.allowUnfree = true;
   programs.dconf.enable = true;
 
+  boot.cleanTmpDir = true;
+
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = ''
