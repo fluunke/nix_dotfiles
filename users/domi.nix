@@ -223,6 +223,11 @@
   };
 
   environment.systemPackages = with pkgs; [
+    aspell
+    aspellDicts.en
+    aspellDicts.en-computers
+    aspellDicts.de
+
     blender
     ffmpeg
     imagemagick
