@@ -64,6 +64,9 @@
             # Screenshots
             "${modifier}+Shift+s" = ''
               exec shotgun $(hacksaw -f "-i %i -g %g") - | xclip -t image/png -selection clipboard'';
+
+            "${modifier}+Shift+Ctrl++s" = ''
+              exec shotgun $(hacksaw -f "-i %i -g %g")'';
           };
 
         terminal = "alacritty";
