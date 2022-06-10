@@ -6,6 +6,7 @@
   config.environment.systemPackages = with pkgs; [
     gcc
     cargo
+    clippy
     rustc
     rustfmt
   ];
