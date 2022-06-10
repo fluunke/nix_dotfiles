@@ -5,6 +5,7 @@
 }: {
   imports = [
     ../kernels/xanmod.nix
+    ../pkgs/wifi.nix
     ../pkgs/chatting.nix
     ../pkgs/code.nix
     ../pkgs/desktop.nix
@@ -19,9 +20,6 @@
   boot = {
     supportedFilesystems = ["ntfs"];
 
-    # fix keychron F keys
-    extraModprobeConfig = "options hid_apple fnmode=0\n";
-
     initrd.secrets = {
       "/crypto_keyfile.bin" = null;
     };
@@ -33,8 +31,7 @@
     };
 
     initrd = {
-      luks.devices."luks-c252bafc-25ae-43ad-8fad-0d8726eddfae".device = "/dev/disk/by-uuid/c252bafc-25ae-43ad-8fad-0d8726eddfae";
-      luks.devices."luks-c252bafc-25ae-43ad-8fad-0d8726eddfae".keyFile = "/crypto_keyfile.bin";
+      luks.devices."luks-59650d2e-cd82-4b10-9b18-302682dcfdf6".keyFile = "/crypto_keyfile.bin";
       kernelModules = ["amdgpu"];
     };
   };
@@ -42,11 +39,11 @@
   hardware.opengl.driSupport32Bit = true;
 
   networking = {
-    hostName = "floxos";
+    hostName = "flapix";
     networkmanager.enable = true;
 
-    firewall.allowedTCPPorts = [8080 3030];
-    firewall.allowedUDPPorts = [8080 3030];
+    firewall.allowedTCPPorts = [];
+    firewall.allowedUDPPorts = [];
   };
 
   services.udisks2.enable = true;
