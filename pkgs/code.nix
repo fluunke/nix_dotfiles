@@ -5,11 +5,26 @@
 }: {
   config.environment.systemPackages = with pkgs; [
     gcc
+    clang
+
     cargo
-    clippy
+    cargo-edit
+    cargo-bloat
+    cargo-watch
+
     rustc
     rustfmt
+    clippy
+    pkg-config
+    bintools-unwrapped
+    openssl_3_0
+    mold
+    nodejs
   ];
+
+  config.environment.variables = {
+    RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
+  };
 
   config.home-manager.users.domi = {
     programs = {

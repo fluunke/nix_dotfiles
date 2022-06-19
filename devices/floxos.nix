@@ -22,31 +22,37 @@
     # fix keychron F keys
     extraModprobeConfig = "options hid_apple fnmode=0\n";
 
-    initrd.secrets = {
-      "/crypto_keyfile.bin" = null;
-    };
-
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
-      efi.efiSysMountPoint = "/boot/efi";
+      efi.efiSysMountPoint = "/boot";
     };
 
     initrd = {
-      luks.devices."luks-c252bafc-25ae-43ad-8fad-0d8726eddfae".device = "/dev/disk/by-uuid/c252bafc-25ae-43ad-8fad-0d8726eddfae";
-      luks.devices."luks-c252bafc-25ae-43ad-8fad-0d8726eddfae".keyFile = "/crypto_keyfile.bin";
       kernelModules = ["amdgpu"];
     };
   };
 
-  hardware.opengl.driSupport32Bit = true;
+  networking.firewall.enable = false;
+
+  hardware = {
+    opengl.driSupport = true;
+    bluetooth.enable = true;
+    opengl.driSupport32Bit = true;
+
+    opengl.extraPackages = with pkgs; [
+      amdvlk
+      rocm-opencl-icd
+      rocm-opencl-runtime
+    ];
+  };
 
   networking = {
     hostName = "floxos";
     networkmanager.enable = true;
 
-    firewall.allowedTCPPorts = [8080 3030];
-    firewall.allowedUDPPorts = [8080 3030];
+    #firewall.allowedTCPPorts = [];
+    #firewall.allowedUDPPorts = [];
   };
 
   services.udisks2.enable = true;
