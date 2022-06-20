@@ -8,6 +8,7 @@
     ../pkgs/chatting.nix
     ../pkgs/code.nix
     ../pkgs/desktop.nix
+    ../pkgs/docker.nix
     ../pkgs/printer.nix
     ../pkgs/random-background.nix
     ../pkgs/sound.nix
