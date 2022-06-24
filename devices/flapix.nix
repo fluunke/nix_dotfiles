@@ -37,7 +37,17 @@
     };
   };
 
-  hardware.opengl.driSupport32Bit = true;
+  hardware = {
+    opengl.driSupport = true;
+    bluetooth.enable = true;
+    opengl.driSupport32Bit = true;
+
+    opengl.extraPackages = with pkgs; [
+      amdvlk
+      rocm-opencl-icd
+      rocm-opencl-runtime
+    ];
+  };
 
   networking = {
     hostName = "flapix";
