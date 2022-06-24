@@ -15,8 +15,12 @@
     rustc
     rustfmt
     clippy
+
+    sqlx-cli
+
     pkg-config
     bintools-unwrapped
+    lld_14
     openssl_3_0
     mold
     nodejs

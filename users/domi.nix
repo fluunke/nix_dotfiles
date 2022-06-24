@@ -28,6 +28,7 @@
   home-manager.useGlobalPkgs = true;
 
   home-manager.users.domi = {pkgs, ...}: {
+    home.stateVersion = "22.11";
     xsession.windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
